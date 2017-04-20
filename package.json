@@ -1,0 +1,15 @@
+{
+  "name": "livechart",
+  "version": "1.0.0",
+  "description": "live chart ",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Diar Selimi",
+  "license": "ISC",
+  "dependencies": {
+    "chart.js": "^2.5.0",
+    "socket.io": "^1.7.3"
+  }
+}

@@ -1,0 +1,63 @@
+<html>
+    <head>
+        <style>
+            .circle{
+                width: 30px;
+                height: 30px;
+                border-radius: 50%;
+                background-color: #333;
+                position: absolute;
+                top: 0px;
+                left: 0px;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="body">
+            <div class="circle"></div>
+        </div>
+        <canvas id="myChart" width="400" height="400"></canvas>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script src="/socket.io/socket.io.js"></script>
+        <script>
+            $(function () {
+                var socket = io();
+
+                socket.on('new_user', function(msg){
+                    $('.circle').css(msg.name, msg.value);
+                });
+                var width = $('body').width();
+                var height = $('body').height();
+
+                $('body').keypress(function(event){
+                    if(event.keyCode == 115){ //down
+                        var position = $('.circle').position();
+                        if(position.top < height-10){
+                            position = position.top + 10;
+                        }
+                        socket.emit('new_user', {name: 'top', value: position+'px'});
+                    }else if(event.keyCode == 100){ //right
+                         var position = $('.circle').position();
+                        if(position.left < width-10){
+                            position = position.left + 10;
+                        }
+                        socket.emit('new_user', {name: 'left', value: position+'px'});
+                    }else if(event.keyCode == 119){ // up
+                        var position = $('.circle').position();
+                        if(position.top >= 10){
+                            position = position.top - 10;
+                        }
+                        socket.emit('new_user', {name: 'top', value: position+'px'});
+                    }else if(event.keyCode == 97){ // left
+                        var position = $('.circle').position();
+                        if(position.left >= 10){
+                            position = position.left - 10;
+                        }
+                        socket.emit('new_user', {name: 'left', value: position+'px'});
+                    }
+                    
+                });                
+            });
+        </script>
+    </body>
+</html>
