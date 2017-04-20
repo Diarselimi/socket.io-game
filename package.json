@@ -4,7 +4,7 @@
   "description": "live chart ",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node app.js"
   },
   "author": "Diar Selimi",
   "license": "ISC",
